@@ -35,22 +35,43 @@ header {
     padding: 15px 40px;
     background: rgba(0,0,0,0.6);
     backdrop-filter: blur(10px);
+
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+
     z-index: 1000;
+}
+header div {
+    position: absolute;
+    left: 40px;
+    font-weight: bold;
 }
 
 nav a {
     color: #aaa;
-    margin-left: 20px;
     text-decoration: none;
+    position: relative;
+    padding-bottom: 4px;
 }
 
 nav a.active {
     color: #ff2a2a;
-    border-bottom: 2px solid #ff2a2a;
 }
 
+nav a.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: #ff2a2a;
+}
+nav {
+    display: flex;
+    gap: 35px; /* controla o espaço entre os nomes */
+}
 /* HERO COM IMAGEM */
 .hero {
     height: 100vh;
