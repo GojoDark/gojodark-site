@@ -2,164 +2,483 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gojo Dark</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-* { margin:0; padding:0; box-sizing:border-box; }
+/* ============================================
+   DESIGN TOKENS
+   ============================================ */
+:root {
+    --bg:          #0a0a0d;
+    --bg-alt:      #101013;
+    --surface:     #17171c;
+    --surface-2:   #1e1e24;
+    --border:      rgba(226, 24, 43, 0.22);
+    --border-soft: rgba(255, 255, 255, 0.07);
+
+    --red:         #e2182b;
+    --red-glow:    #ff3346;
+    --red-dim:     #8a1420;
+
+    --text:        #f2f0ec;
+    --text-muted:  #8d8d95;
+    --text-faint:  #55555c;
+
+    --font-display: 'Rajdhani', sans-serif;
+    --font-body:    'Inter', sans-serif;
+
+    --header-h: 70px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
 body {
-    font-family: Arial, sans-serif;
-    color: white;
+    font-family: var(--font-body);
+    color: var(--text);
+    background: var(--bg);
     overflow-x: hidden;
-
-    /* FUNDO COM IMAGEM + OVERLAY */
-    background:
-        linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.9)),
-        url('https://images.unsplash.com/photo-1520975922324-8b456906c813') center/cover no-repeat fixed;
+    position: relative;
 }
 
-/* overlay vermelho leve */
+/* grain / atmosphere overlay */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    background-image: radial-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 3px 3px;
+    opacity: 0.5;
+}
+
 body::before {
     content: "";
     position: fixed;
     inset: 0;
-    background: radial-gradient(circle at center, rgba(255,0,0,0.15), transparent 60%);
+    pointer-events: none;
     z-index: -1;
+    background: radial-gradient(circle at 50% 0%, rgba(226,24,43,0.14), transparent 55%);
 }
 
-/* HEADER */
+::selection { background: var(--red); color: #000; }
+
+a { color: inherit; }
+
+h1, h2, h3 {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* ============================================
+   HEADER / NAV
+   ============================================ */
 header {
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 15px 40px;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(10px);
-
+    height: var(--header-h);
+    padding: 0 40px;
+    background: rgba(10,10,13,0.75);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-soft);
     display: flex;
-    justify-content: center;
     align-items: center;
-
+    justify-content: space-between;
     z-index: 1000;
 }
-header div {
-    position: absolute;
-    left: 40px;
-    font-weight: bold;
+
+.logo {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+.logo span { color: var(--red); }
+
+nav {
+    display: flex;
+    gap: 34px;
 }
 
 nav a {
-    color: #aaa;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
     text-decoration: none;
+    color: var(--text-muted);
     position: relative;
     padding-bottom: 4px;
+    transition: color 0.25s;
 }
-
-nav a.active {
-    color: #ff2a2a;
-}
-
+nav a:hover { color: var(--text); }
+nav a.active { color: var(--red-glow); }
 nav a.active::after {
     content: "";
     position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 2px;
-    background: #ff2a2a;
+    left: 0; bottom: 0;
+    width: 100%; height: 2px;
+    background: var(--red-glow);
+    box-shadow: 0 0 8px var(--red-glow);
 }
-nav {
-    display: flex;
-    gap: 35px; /* controla o espaço entre os nomes */
+
+/* hamburger (mobile only) */
+.burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    z-index: 1001;
 }
-/* HERO COM IMAGEM */
+.burger span {
+    width: 24px; height: 2px;
+    background: var(--text);
+    transition: 0.3s;
+}
+.burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger.open span:nth-child(2) { opacity: 0; }
+.burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ============================================
+   HERO
+   ============================================ */
 .hero {
-    height: 100vh;
-    background:
-        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)),
-        url('https://i.pinimg.com/1200x/27/ca/3a/27ca3a9e0c9645216fafd6826ef7dcbd.jpg') center/cover no-repeat;
+    min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    padding: 0 24px;
+    position: relative;
+    background:
+        linear-gradient(rgba(10,10,13,0.55), rgba(10,10,13,0.96)),
+        url('https://i.pinimg.com/1200x/27/ca/3a/27ca3a9e0c9645216fafd6826ef7dcbd.jpg') center/cover no-repeat;
+}
+
+.hero-eyebrow {
+    font-family: var(--font-display);
+    font-size: 14px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--red-glow);
+    margin-bottom: 18px;
 }
 
 .hero h1 {
-    font-size: 64px;
-    text-shadow: 0 0 18px rgba(255,0,0,0.7);
+    font-size: clamp(52px, 11vw, 108px);
+    line-height: 0.95;
+    color: var(--text);
+    text-shadow: 0 0 30px rgba(226,24,43,0.55);
+    position: relative;
 }
 
-/* SECTIONS */
+/* subtle flicker signature on the hero title */
+.hero h1 span {
+    display: inline-block;
+    animation: flicker 6s infinite;
+}
+@keyframes flicker {
+    0%, 92%, 100% { text-shadow: 0 0 30px rgba(226,24,43,0.55); }
+    93% { text-shadow: none; opacity: 0.6; }
+    94% { text-shadow: 0 0 44px rgba(255,51,70,0.9); }
+    95% { text-shadow: none; opacity: 0.7; }
+    96% { text-shadow: 0 0 30px rgba(226,24,43,0.55); }
+}
+
+.hero p {
+    margin-top: 18px;
+    color: var(--text-muted);
+    font-size: 17px;
+    max-width: 480px;
+}
+
+.hero-scroll {
+    position: absolute;
+    bottom: 36px;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--text-faint);
+    text-transform: uppercase;
+}
+
+/* ============================================
+   SECTION LAYOUT
+   ============================================ */
 .section {
-    padding: 100px 40px;
-    text-align: center;
-}
-
-/* GRID */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-    gap: 20px;
+    padding: 110px 24px;
     max-width: 1100px;
     margin: 0 auto;
 }
 
-/* CARD (clicável) */
+.section-head {
+    text-align: center;
+    margin-bottom: 48px;
+}
+.section-head .eyebrow {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    color: var(--red-glow);
+    margin-bottom: 10px;
+}
+.section-head h2 {
+    font-size: 38px;
+    color: var(--text);
+}
+
+/* jagged crack divider between sections */
+.crack-divider {
+    width: 100%;
+    height: 18px;
+    display: block;
+    opacity: 0.5;
+}
+
+/* ============================================
+   GRID / CARDS (projetos + galeria)
+   ============================================ */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+    gap: 22px;
+}
+
 .card {
     display: block;
     text-decoration: none;
-    color: white;
-    cursor: pointer;
-    position: relative;
-    z-index: 10;
-
-    background: rgba(255,255,255,0.05);
-    border-radius: 12px;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 10px;
     overflow: hidden;
-    transition: 0.3s;
-    border: 1px solid rgba(255,0,0,0.2);
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
 }
-
 .card:hover {
-    transform: translateY(-6px) scale(1.03);
-    box-shadow: 0 0 20px rgba(255,0,0,0.6);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(226,24,43,0.25);
+    border-color: var(--border);
 }
-
 .card img {
     width: 100%;
-    height: 150px;
+    height: 170px;
     object-fit: cover;
+    display: block;
+    filter: saturate(0.85) contrast(1.05);
 }
-
+.card .card-body { padding: 16px 18px 20px; }
 .card h3 {
-    padding: 14px;
+    font-size: 19px;
+    margin-bottom: 6px;
+    color: var(--text);
+}
+.card p {
+    font-family: var(--font-body);
+    text-transform: none;
+    letter-spacing: normal;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+.tag {
+    display: inline-block;
+    margin-top: 10px;
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--red-glow);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
 }
 
-/* BOTÕES */
+/* galeria: square thumbs, click to enlarge */
+.gallery-item {
+    cursor: zoom-in;
+    aspect-ratio: 1 / 1;
+}
+.gallery-item img { height: 100%; }
+
+/* lightbox */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 40px;
+}
+.lightbox.open { display: flex; }
+.lightbox img {
+    max-width: 90vw;
+    max-height: 85vh;
+    border-radius: 8px;
+    box-shadow: 0 0 60px rgba(226,24,43,0.35);
+}
+.lightbox-close {
+    position: absolute;
+    top: 24px; right: 32px;
+    font-size: 32px;
+    color: var(--text);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* ============================================
+   DEVLOG (timeline)
+   ============================================ */
+.devlog-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-left: 2px solid var(--border);
+    padding-left: 28px;
+}
+.devlog-entry {
+    position: relative;
+    padding-bottom: 40px;
+}
+.devlog-entry:last-child { padding-bottom: 0; }
+.devlog-entry::before {
+    content: "";
+    position: absolute;
+    left: -34px;
+    top: 4px;
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: var(--red);
+    box-shadow: 0 0 10px var(--red-glow);
+}
+.devlog-date {
+    font-family: var(--font-display);
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    color: var(--red-glow);
+    text-transform: uppercase;
+}
+.devlog-entry h3 {
+    font-size: 20px;
+    margin: 6px 0 8px;
+}
+.devlog-entry p {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 620px;
+}
+
+/* ============================================
+   SOBRE / CONTATO
+   ============================================ */
+.sobre-text {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 17px;
+    line-height: 1.8;
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+.contato-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 36px;
+}
+
 .btn {
-    display: inline-block;
-    margin: 10px;
-    padding: 10px 18px;
-    border: 1px solid #ff2a2a;
-    color: white;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border: 1px solid var(--red);
+    color: var(--text);
     text-decoration: none;
     border-radius: 6px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 14px;
+    transition: 0.25s;
 }
-
 .btn:hover {
-    background: #ff2a2a;
-    color: black;
+    background: var(--red);
+    color: #0a0a0d;
+    box-shadow: 0 0 22px rgba(226,24,43,0.5);
 }
 
-/* FADE */
+footer {
+    text-align: center;
+    padding: 32px 24px;
+    color: var(--text-faint);
+    font-size: 13px;
+    border-top: 1px solid var(--border-soft);
+}
+
+/* ============================================
+   FADE-IN ON SCROLL
+   ============================================ */
 .fade {
     opacity: 0;
-    transform: translateY(20px);
-    transition: 0.6s;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
 }
-
 .fade.show {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    header { padding: 0 20px; }
+    nav {
+        position: fixed;
+        top: var(--header-h);
+        left: 0;
+        width: 100%;
+        height: calc(100vh - var(--header-h));
+        background: rgba(10,10,13,0.98);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        transform: translateX(100%);
+        transition: transform 0.35s ease;
+    }
+    nav.open { transform: translateX(0); }
+    nav a { font-size: 20px; }
+    .burger { display: flex; }
+
+    .section { padding: 80px 20px; }
+    .hero h1 { font-size: clamp(40px, 14vw, 64px); }
+    .devlog-list { padding-left: 20px; }
+    .devlog-entry::before { left: -26px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
 }
 </style>
 </head>
@@ -167,67 +486,130 @@ nav {
 <body>
 
 <header>
-    <div>GojoDark</div>
-    <nav>
+    <div class="logo">Gojo<span>Dark</span></div>
+    <nav id="nav">
         <a href="#home">Home</a>
         <a href="#projetos">Projetos</a>
+        <a href="#devlog">Devlog</a>
+        <a href="#galeria">Galeria</a>
         <a href="#links">Links</a>
         <a href="#sobre">Sobre</a>
         <a href="#contato">Contato</a>
     </nav>
+    <button class="burger" id="burger" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+    </button>
 </header>
 
 <!-- HOME -->
 <section id="home" class="hero fade">
-    <h1>Gojo Dark</h1>
+    <span class="hero-eyebrow">Conteúdo &amp; projetos digitais</span>
+    <h1><span>Gojo Dark</span></h1>
+    <p>Jogos, estética dark e experiências visuais simples — construído em público.</p>
+    <div class="hero-scroll">↓ role para explorar</div>
 </section>
 
 <!-- PROJETOS -->
 <section id="projetos" class="section fade">
-    <h2>Projetos</h2>
+    <div class="section-head">
+        <span class="eyebrow">O que tá em obra</span>
+        <h2>Projetos</h2>
+    </div>
     <div class="grid">
         <div class="card">
-            <img src="https://i.pinimg.com/736x/c4/c3/5c/c4c35c183627d7369ea6c86ca04c9447.jpg">
-            <h3>Jogo em Andamento</h3>
+            <img src="https://i.pinimg.com/736x/c4/c3/5c/c4c35c183627d7369ea6c86ca04c9447.jpg" alt="Jogo em Andamento">
+            <div class="card-body">
+                <h3>Jogo em Andamento</h3>
+                <p>Descreva aqui do que se trata o projeto.</p>
+                <span class="tag">Em desenvolvimento</span>
+            </div>
         </div>
         <div class="card">
-            <img src="https://i.pinimg.com/1200x/43/bb/0b/43bb0b561b277b6ae768da3214124461.jpg">
-            <h3>APP??</h3>
+            <img src="https://i.pinimg.com/1200x/43/bb/0b/43bb0b561b277b6ae768da3214124461.jpg" alt="APP??">
+            <div class="card-body">
+                <h3>APP??</h3>
+                <p>Descreva aqui do que se trata o projeto.</p>
+                <span class="tag">Ideia / protótipo</span>
+            </div>
         </div>
+        <!-- Para adicionar um novo projeto, copie um .card inteiro e troque imagem/título/descrição -->
+    </div>
+</section>
+
+<!-- DEVLOG -->
+<section id="devlog" class="section fade">
+    <div class="section-head">
+        <span class="eyebrow">Progresso, sem enrolação</span>
+        <h2>Devlog</h2>
+    </div>
+    <div class="devlog-list">
+        <div class="devlog-entry">
+            <span class="devlog-date">Ago 2026</span>
+            <h3>Título da atualização</h3>
+            <p>Escreva aqui o que mudou, o que foi testado ou o que travou. Cada entrada nova entra no topo da lista.</p>
+        </div>
+        <div class="devlog-entry">
+            <span class="devlog-date">Jul 2026</span>
+            <h3>Título da atualização</h3>
+            <p>Escreva aqui o que mudou, o que foi testado ou o que travou.</p>
+        </div>
+        <!-- Para adicionar uma entrada nova, copie um .devlog-entry inteiro e cole no TOPO da lista -->
+    </div>
+</section>
+
+<!-- GALERIA -->
+<section id="galeria" class="section fade">
+    <div class="section-head">
+        <span class="eyebrow">Skins, prints e telas</span>
+        <h2>Galeria</h2>
+    </div>
+    <div class="grid" id="gallery-grid">
+        <div class="card gallery-item">
+            <img src="https://i.pinimg.com/736x/c4/c3/5c/c4c35c183627d7369ea6c86ca04c9447.jpg" alt="Imagem da galeria">
+        </div>
+        <div class="card gallery-item">
+            <img src="https://i.pinimg.com/1200x/43/bb/0b/43bb0b561b277b6ae768da3214124461.jpg" alt="Imagem da galeria">
+        </div>
+        <div class="card gallery-item">
+            <img src="https://i.pinimg.com/736x/91/ce/c2/91cec23f8553dbb9d9b4a1a3ad294cfc.jpg" alt="Imagem da galeria">
+        </div>
+        <!-- Troque essas imagens pelas suas skins/prints reais. Clique amplia. -->
     </div>
 </section>
 
 <!-- LINKS -->
 <section id="links" class="section fade">
-    <h2>Links</h2>
-
+    <div class="section-head">
+        <span class="eyebrow">Onde me encontrar</span>
+        <h2>Links</h2>
+    </div>
     <div class="grid">
-
         <a href="https://www.youtube.com/@GojoDark1hz" target="_blank" rel="noopener noreferrer" class="card">
-            <img src="https://i.pinimg.com/736x/91/ce/c2/91cec23f8553dbb9d9b4a1a3ad294cfc.jpg">
-            <h3>YouTube</h3>
+            <img src="https://i.pinimg.com/736x/91/ce/c2/91cec23f8553dbb9d9b4a1a3ad294cfc.jpg" alt="YouTube">
+            <div class="card-body"><h3>YouTube</h3></div>
         </a>
-
         <a href="https://discord.gg/vh5PhPACQT" target="_blank" rel="noopener noreferrer" class="card">
-            <img src="https://i.pinimg.com/1200x/fc/ea/9d/fcea9d73a542f8a88907ba603ebdc379.jpg">
-            <h3>Discord</h3>
+            <img src="https://i.pinimg.com/1200x/fc/ea/9d/fcea9d73a542f8a88907ba603ebdc379.jpg" alt="Discord">
+            <div class="card-body"><h3>Discord</h3></div>
         </a>
-
         <a href="https://steamcommunity.com/id/GojoDark/" target="_blank" rel="noopener noreferrer" class="card">
-            <img src="https://i.pinimg.com/1200x/f7/29/e0/f729e0889564d4fca9fd39b2f8903862.jpg">
-            <h3>Steam</h3>
+            <img src="https://i.pinimg.com/1200x/f7/29/e0/f729e0889564d4fca9fd39b2f8903862.jpg" alt="Steam">
+            <div class="card-body"><h3>Steam</h3></div>
         </a>
         <a href="https://youtu.be/0ms3jv7ug1k?si=5XUD6LTl2xsTU6AM" target="_blank" rel="noopener noreferrer" class="card">
-            <img src="https://i.pinimg.com/736x/7f/d7/57/7fd757bd7c9f6a8c02557ba28c74df21.jpg">
-            <h3>Hack CS?</h3>
+            <img src="https://i.pinimg.com/736x/7f/d7/57/7fd757bd7c9f6a8c02557ba28c74df21.jpg" alt="Hack CS?">
+            <div class="card-body"><h3>Hack CS?</h3></div>
         </a>
     </div>
 </section>
 
 <!-- SOBRE -->
 <section id="sobre" class="section fade">
-    <h2>Sobre</h2>
-    <p>
+    <div class="section-head">
+        <span class="eyebrow">Quem tá por trás</span>
+        <h2>Sobre</h2>
+    </div>
+    <p class="sobre-text">
         Criador de conteúdo e projetos digitais.<br>
         Foco em jogos, estética dark e experiências visuais simples.
     </p>
@@ -235,42 +617,81 @@ nav {
 
 <!-- CONTATO -->
 <section id="contato" class="section fade">
-    <h2>Contato</h2>
-    <a href="https://discord.gg/vh5PhPACQT" target="_blank" rel="noopener noreferrer" class="btn">Discord</a>
-    <a href="https://steamcommunity.com/id/GojoDark/" target="_blank" rel="noopener noreferrer" class="btn">Steam</a>
+    <div class="section-head">
+        <span class="eyebrow">Vamos conversar</span>
+        <h2>Contato</h2>
+    </div>
+    <div class="contato-actions">
+        <a href="https://discord.gg/vh5PhPACQT" target="_blank" rel="noopener noreferrer" class="btn">Discord</a>
+        <a href="https://steamcommunity.com/id/GojoDark/" target="_blank" rel="noopener noreferrer" class="btn">Steam</a>
+    </div>
 </section>
 
+<footer>© 2026 GojoDark</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Fechar">&times;</button>
+    <img id="lightbox-img" src="" alt="Imagem ampliada">
+</div>
+
 <script>
-// BOTÃO ATIVO
-const links = document.querySelectorAll("nav a");
-const sections = document.querySelectorAll("section");
+(() => {
+    // ---- Nav ativa conforme scroll ----
+    const links = document.querySelectorAll("nav a");
+    const sections = document.querySelectorAll("section[id]");
 
-window.addEventListener("scroll", () => {
-    let current = "";
-    sections.forEach(sec => {
-        const top = window.scrollY;
-        const offset = sec.offsetTop - 120;
-        const height = sec.offsetHeight;
-        if (top >= offset && top < offset + height) current = sec.id;
+    const setActiveLink = () => {
+        let current = "";
+        const scrollPos = window.scrollY + 130;
+        sections.forEach(sec => {
+            if (scrollPos >= sec.offsetTop && scrollPos < sec.offsetTop + sec.offsetHeight) {
+                current = sec.id;
+            }
+        });
+        links.forEach(link => {
+            link.classList.toggle("active", link.getAttribute("href") === "#" + current);
+        });
+    };
+    window.addEventListener("scroll", setActiveLink, { passive: true });
+    setActiveLink();
+
+    // ---- Menu hambúrguer (mobile) ----
+    const burger = document.getElementById("burger");
+    const nav = document.getElementById("nav");
+    burger.addEventListener("click", () => {
+        burger.classList.toggle("open");
+        nav.classList.toggle("open");
+    });
+    nav.querySelectorAll("a").forEach(a => {
+        a.addEventListener("click", () => {
+            burger.classList.remove("open");
+            nav.classList.remove("open");
+        });
     });
 
-    links.forEach(link => {
-        link.classList.remove("active");
-        if (link.getAttribute("href") === "#" + current) {
-            link.classList.add("active");
-        }
-    });
-});
+    // ---- Fade-in ao rolar ----
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add("show");
+        });
+    }, { threshold: 0.15 });
+    document.querySelectorAll(".fade").forEach(el => observer.observe(el));
 
-// FADE
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if(entry.isIntersecting){
-            entry.target.classList.add("show");
-        }
+    // ---- Lightbox da galeria ----
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    document.querySelectorAll(".gallery-item img").forEach(img => {
+        img.addEventListener("click", () => {
+            lightboxImg.src = img.src;
+            lightbox.classList.add("open");
+        });
     });
-});
-document.querySelectorAll(".fade").forEach(el => observer.observe(el));
+    const closeLightbox = () => lightbox.classList.remove("open");
+    document.getElementById("lightbox-close").addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeLightbox(); });
+})();
 </script>
 
 </body>
