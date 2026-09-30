@@ -1,206 +1,614 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gojo Dark</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- SEO -->
-<meta name="description" content="GojoDark — criador de conteúdo e projetos digitais. Jogos, mods e experiências visuais dark, construídos em público.">
+    <title>GojoDark — Projetos, jogos e tecnologia</title>
 
-<!-- Favicon -->
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <meta
+        name="description"
+        content="GojoDark — projetos, jogos, ferramentas, mods e experiências digitais criadas por Victor."
+    >
+    <meta name="theme-color" content="#0a0a0d">
 
-<!-- Open Graph (Discord, Twitter, WhatsApp, etc.) -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="Gojo Dark">
-<meta property="og:description" content="Criador de conteúdo e projetos digitais. Jogos, mods e experiências visuais dark, construídos em público.">
-<meta property="og:image" content="https://gojodark.github.io/gojodark-site/assets/og-image.png">
-<meta property="og:url" content="https://gojodark.github.io/gojodark-site/">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Gojo Dark">
-<meta name="twitter:description" content="Criador de conteúdo e projetos digitais. Jogos, mods e experiências visuais dark.">
-<meta name="twitter:image" content="https://gojodark.github.io/gojodark-site/assets/og-image.png">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="GojoDark">
+    <meta
+        property="og:description"
+        content="Projetos, jogos e tecnologia. Construindo minhas ideias, uma por uma."
+    >
+    <meta
+        property="og:image"
+        content="https://gojodark.github.io/gojodark-site/assets/og-image.png"
+    >
+    <meta
+        property="og:url"
+        content="https://gojodark.github.io/gojodark-site/"
+    >
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="GojoDark">
+    <meta
+        name="twitter:description"
+        content="Projetos, jogos e tecnologia. Construindo minhas ideias, uma por uma."
+    >
+    <meta
+        name="twitter:image"
+        content="https://gojodark.github.io/gojodark-site/assets/og-image.png"
+    >
 
-<link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
 <header>
-    <div class="logo">Gojo<span>Dark</span></div>
-    <nav id="nav">
+    <a href="#home" class="logo" aria-label="GojoDark — início">
+        Gojo<span>Dark</span>
+    </a>
+
+    <nav id="nav" aria-label="Navegação principal">
         <a href="#home">Home</a>
         <a href="#projetos">Projetos</a>
         <a href="#devlog">Devlog</a>
-        <a href="#links">Links</a>
         <a href="#sobre">Sobre</a>
-        <a href="#contato">Contato</a>
-        <a href="#faq">FAQ</a>
+        <a href="#links">Links</a>
     </nav>
-    <button class="burger" id="burger" aria-label="Abrir menu">
-        <span></span><span></span><span></span>
+
+    <button
+        class="burger"
+        id="burger"
+        type="button"
+        aria-label="Abrir menu"
+        aria-controls="nav"
+        aria-expanded="false"
+    >
+        <span></span>
+        <span></span>
+        <span></span>
     </button>
 </header>
 
-<!-- HOME -->
-<section id="home" class="hero fade">
-    <span class="hero-eyebrow">Conteúdo &amp; projetos digitais</span>
-    <h1><span>Gojo Dark</span></h1>
-    <p>Jogos, estética dark e experiências visuais simples — construído em público.</p>
-    <div class="hero-scroll">↓ role para explorar</div>
-</section>
+<main>
 
-<!-- PROJETOS -->
-<section id="projetos" class="section fade">
-    <div class="section-head">
-        <span class="eyebrow">O que tá em obra</span>
-        <h2>Projetos</h2>
-    </div>
-    <div class="grid">
-        <div class="card">
-            <img src="https://i.pinimg.com/736x/c4/c3/5c/c4c35c183627d7369ea6c86ca04c9447.jpg" alt="Jogo em Andamento">
-            <div class="card-body">
-                <h3>Jogo em Andamento</h3>
-                <p>Descreva aqui do que se trata o projeto.</p>
-                <span class="tag">Em desenvolvimento</span>
-            </div>
+    <!-- HOME -->
+    <section id="home" class="hero fade">
+        <span class="hero-eyebrow">
+            Projetos • Jogos • Tecnologia
+        </span>
+
+        <h1>
+            <span>Gojo Dark</span>
+        </h1>
+
+        <p>
+            Construindo minhas ideias, uma por uma.
+        </p>
+
+        <div class="hero-scroll" aria-hidden="true">
+            ↓ role para explorar
         </div>
-        <div class="card">
-            <img src="https://i.pinimg.com/1200x/43/bb/0b/43bb0b561b277b6ae768da3214124461.jpg" alt="APP??">
-            <div class="card-body">
-                <h3>APP??</h3>
-                <p>Descreva aqui do que se trata o projeto.</p>
-                <span class="tag">Ideia / protótipo</span>
-            </div>
+    </section>
+
+
+    <!-- PROJETOS -->
+    <section id="projetos" class="section fade">
+
+        <div class="section-head">
+            <span class="eyebrow">O que estou construindo</span>
+            <h2>Projetos</h2>
         </div>
-        <!-- Para adicionar um novo projeto, copie um .card inteiro e troque imagem/título/descrição -->
+
+        <div class="grid project-grid">
+
+            <!-- VØIDCORE -->
+            <article class="card project-card project-voidcore">
+
+                <div class="project-visual project-visual-voidcore">
+    <img
+        src="assets/projects/voidcore.png"
+        alt=""
+        class="project-image project-image-voidcore"
+        loading="lazy"
+    >
+
+    <div class="project-visual-overlay"></div>
+
+    <div class="project-visual-label" aria-hidden="true">
+        <span>VØIDCORE</span>
+        <small>FPS TOOLS</small>
     </div>
-</section>
+</div>
+
+                <div class="card-body">
+
+                    <div class="project-heading">
+                        <h3>VØIDCORE</h3>
+                        <span class="project-status">
+                            Em desenvolvimento
+                        </span>
+                    </div>
+
+                    <p>
+                        Hub de ferramentas para FPS com recursos para
+                        CS2, Valorant e Rainbow Six Siege.
+                    </p>
+
+                    <div class="project-tags">
+                        <span>CS2</span>
+                        <span>Valorant</span>
+                        <span>R6</span>
+                    </div>
+
+                    <a
+                        href="https://github.com/GojoDark/V-IDCORE"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="project-link"
+                    >
+                        Ver projeto <span aria-hidden="true">→</span>
+                    </a>
+
+                </div>
+            </article>
+
+
+            <!-- NIGHTCALL -->
+            <article class="card project-card project-nightcall">
+
+<div class="project-visual project-visual-nightcall">
+    <img
+        src="assets/projects/nightcall.png"
+        alt=""
+        class="project-image project-image-nightcall"
+        loading="lazy"
+    >
+
+    <div class="project-visual-overlay"></div>
+
+    <div class="project-visual-label" aria-hidden="true">
+        <span>NIGHTCALL</span>
+        <small>SOCIAL PLATFORM</small>
+    </div>
+</div>
+
+                <div class="card-body">
+
+                    <div class="project-heading">
+                        <h3>Nightcall</h3>
+                        <span class="project-status">
+                            Em desenvolvimento
+                        </span>
+                    </div>
+
+                    <p>
+                        Plataforma social focada em conversas,
+                        mensagens e chamadas em tempo real.
+                    </p>
+
+                    <div class="project-tags">
+                        <span>DMs</span>
+                        <span>Calls</span>
+                        <span>Comunidades</span>
+                    </div>
+
+
+
+                </div>
+            </article>
+
+        </div>
+
+    </section>
+
 
 <!-- DEVLOG -->
 <section id="devlog" class="section fade">
+
     <div class="section-head">
         <span class="eyebrow">Progresso, sem enrolação</span>
         <h2>Devlog</h2>
     </div>
-    <div class="devlog-list">
-        <div class="devlog-entry">
-            <span class="devlog-date">Ago 2026</span>
-            <h3>Atualizando a build</h3>
-            <p>Ajustando bugs da versão atual e testando as próximas features antes de lançar. Sem previsão fechada ainda, mas o progresso vai entrando aqui.</p>
+
+    <div class="devlog-wrap">
+
+        <div class="devlog-list">
+
+            <!-- NIGHTCALL -->
+            <article class="devlog-entry">
+                <div class="devlog-marker">
+                    <span>01</span>
+                </div>
+
+                <div class="devlog-content">
+                    <div class="devlog-meta">
+                        <span class="devlog-date">SET 2026</span>
+                        <span class="devlog-type">SOCIAL PLATFORM</span>
+                    </div>
+
+                    <h3>Nightcall</h3>
+
+                    <p>
+                        Trabalhando na experiência de mensagens, chamadas,
+                        compartilhamento de tela e na organização geral da interface.
+                    </p>
+
+                    <div class="devlog-tags">
+                        <span>DMs</span>
+                        <span>Calls</span>
+                        <span>UI</span>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- VOIDCORE -->
+            <article class="devlog-entry">
+                <div class="devlog-marker">
+                    <span>02</span>
+                </div>
+
+                <div class="devlog-content">
+                    <div class="devlog-meta">
+                        <span class="devlog-date">SET 2026</span>
+                        <span class="devlog-type">FPS TOOLS</span>
+                    </div>
+
+                    <h3>VØIDCORE</h3>
+
+                    <p>
+                        Evoluindo as ferramentas para FPS, incluindo sensibilidade,
+                        crosshair e recursos específicos para diferentes jogos.
+                    </p>
+
+                    <div class="devlog-tags">
+                        <span>CS2</span>
+                        <span>Valorant</span>
+                        <span>R6</span>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- GOJODARK -->
+            <article class="devlog-entry">
+                <div class="devlog-marker">
+                    <span>03</span>
+                </div>
+
+                <div class="devlog-content">
+                    <div class="devlog-meta">
+                        <span class="devlog-date">SET 2026</span>
+                        <span class="devlog-type">PORTFOLIO</span>
+                    </div>
+
+                    <h3>GojoDark V2</h3>
+
+                    <p>
+                        Reorganizando o site para representar melhor meus projetos
+                        atuais sem abandonar a identidade original.
+                    </p>
+
+                    <div class="devlog-tags">
+                        <span>Web</span>
+                        <span>UI</span>
+                        <span>Design</span>
+                    </div>
+                </div>
+            </article>
+
         </div>
-        <div class="devlog-entry">
-            <span class="devlog-date">Jul 2026</span>
-            <h3>Atualização de bugs</h3>
-            <p>Ajustando bugs no qual as imagens não era carregadas, o site não aparecia os topicos, os urls não funcionavam.</p>
-        </div>
-        <!-- Para adicionar uma entrada nova, copie um .devlog-entry inteiro e cole no TOPO da lista -->
+
     </div>
+
+</section>
+
+
+ <!-- SOBRE -->
+<section id="sobre" class="section fade">
+
+    <div class="section-head">
+        <span class="eyebrow">Quem está por trás</span>
+        <h2>Sobre</h2>
+    </div>
+
+    <div class="about">
+
+        <div class="about-main">
+
+            <span class="about-index">01 / GOJODARK</span>
+
+            <h3 class="about-title">
+                Eu construo coisas que
+                <span>eu mesmo gostaria de usar.</span>
+            </h3>
+
+            <div class="about-copy">
+                <p>
+                    <strong>Victor, também conhecido como GojoDark.</strong>
+                </p>
+
+                <p>
+                    Transformo ideias em projetos digitais, ferramentas,
+                    interfaces, mods e experiências voltadas principalmente
+                    para jogos.
+                </p>
+
+                <p>
+                    Não sigo uma área única. Se uma ideia parece interessante,
+                    útil ou simplesmente divertida de construir, provavelmente
+                    vou tentar fazer ela funcionar.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="about-side">
+
+            <div class="about-block">
+                <span class="about-label">INTERESSES</span>
+
+                <div class="about-tags" aria-label="Áreas de interesse">
+                    <span>FPS</span>
+                    <span>Minecraft</span>
+                    <span>Web</span>
+                    <span>UI</span>
+                    <span>Mods</span>
+                </div>
+            </div>
+
+            <div class="about-block">
+                <span class="about-label">ATUALMENTE CONSTRUINDO</span>
+
+                <div class="about-projects">
+                    <span>VØIDCORE</span>
+                    <span>Nightcall</span>
+                </div>
+            </div>
+
+            <div class="contato-actions">
+
+                <a
+                    href="https://discord.gg/vh5PhPACQT"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn"
+                >
+                    Discord
+                    <span aria-hidden="true">↗</span>
+                </a>
+
+                <a
+                    href="https://github.com/GojoDark"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn"
+                >
+                    GitHub
+                    <span aria-hidden="true">↗</span>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
 
 <!-- LINKS -->
 <section id="links" class="section fade">
+
     <div class="section-head">
         <span class="eyebrow">Onde me encontrar</span>
         <h2>Links</h2>
     </div>
-    <div class="grid">
-        <a href="https://www.youtube.com/@GojoDark1hz" target="_blank" rel="noopener noreferrer" class="card">
-            <img src="https://i.pinimg.com/736x/91/ce/c2/91cec23f8553dbb9d9b4a1a3ad294cfc.jpg" alt="YouTube">
-            <div class="card-body"><h3>YouTube</h3></div>
-        </a>
-        <a href="https://discord.gg/vh5PhPACQT" target="_blank" rel="noopener noreferrer" class="card">
-            <img src="https://i.pinimg.com/1200x/fc/ea/9d/fcea9d73a542f8a88907ba603ebdc379.jpg" alt="Discord">
-            <div class="card-body"><h3>Discord</h3></div>
-        </a>
-        <a href="https://steamcommunity.com/id/GojoDark/" target="_blank" rel="noopener noreferrer" class="card">
-            <img src="https://i.pinimg.com/1200x/f7/29/e0/f729e0889564d4fca9fd39b2f8903862.jpg" alt="Steam">
-            <div class="card-body"><h3>Steam</h3></div>
-        </a>
-        <a href="https://youtu.be/0ms3jv7ug1k?si=5XUD6LTl2xsTU6AM" target="_blank" rel="noopener noreferrer" class="card">
-            <img src="https://i.pinimg.com/736x/7f/d7/57/7fd757bd7c9f6a8c02557ba28c74df21.jpg" alt="Hack CS?">
-            <div class="card-body"><h3>Hack CS?</h3></div>
-        </a>
-    </div>
-</section>
 
-<!-- SOBRE -->
-<section id="sobre" class="section fade">
-    <div class="section-head">
-        <span class="eyebrow">Quem tá por trás</span>
-        <h2>Sobre</h2>
-    </div>
-    <p class="sobre-text">
-        Criador de conteúdo e projetos digitais.<br>
-        Foco em jogos, estética dark e experiências visuais simples.
-    </p>
-</section>
+    <div class="social-grid">
 
-<!-- CONTATO -->
-<section id="contato" class="section fade">
-    <div class="section-head">
-        <span class="eyebrow">Vamos conversar</span>
-        <h2>Contato</h2>
-    </div>
-    <div class="contato-actions">
-        <a href="https://discord.gg/vh5PhPACQT" target="_blank" rel="noopener noreferrer" class="btn">Discord</a>
-        <a href="https://steamcommunity.com/id/GojoDark/" target="_blank" rel="noopener noreferrer" class="btn">Steam</a>
-    </div>
-</section>
+        <!-- YOUTUBE -->
+        <a
+            href="https://www.youtube.com/@GojoDark1hz"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-card social-youtube"
+        >
+            <span class="social-index">01</span>
 
-<!-- FAQ -->
-<section id="faq" class="section fade">
-    <div class="section-head">
-        <span class="eyebrow">Perguntas frequentes</span>
-        <h2>FAQ</h2>
-    </div>
-
-    <p class="faq-intro">
-        Tem dúvida que não tá aqui? <a href="https://discord.gg/vh5PhPACQT" target="_blank" rel="noopener noreferrer">Manda mensagem no Discord</a>.
-    </p>
-
-    <div class="faq-list">
-        <div class="faq-item">
-            <button class="faq-question">
-                Dúvida sobre os projetos?
-                <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-                <p>Os projetos ainda estão em desenvolvimento, sem previsão de lançamento fechada. Você pode acompanhar o que já foi feito na seção Projetos e o progresso mais detalhado no Devlog.</p>
+            <div class="social-info">
+                <span class="social-type">VÍDEOS</span>
+                <h3>YouTube</h3>
+                <p>@GojoDark1hz</p>
             </div>
-        </div>
-        <div class="faq-item">
-            <button class="faq-question">
-                Dúvida sobre quando as coisas saem?
-                <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-                <p>Não tem data fechada ainda — tudo depende do ritmo de desenvolvimento. O jeito mais confiável de saber é acompanhar as atualizações no Devlog, que é atualizado sempre que rola progresso real.</p>
+
+            <span class="social-arrow" aria-hidden="true">↗</span>
+        </a>
+
+
+        <!-- GITHUB -->
+        <a
+            href="https://github.com/GojoDark"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-card social-github"
+        >
+            <span class="social-index">02</span>
+
+            <div class="social-info">
+                <span class="social-type">CÓDIGO</span>
+                <h3>GitHub</h3>
+                <p>@GojoDark</p>
             </div>
-        </div>
-        <div class="faq-item">
-            <button class="faq-question">
-                Dúvida sobre como entrar em contato?
-                <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-                <p>O canal principal é o Discord — é lá que dá pra mandar mensagem direto, tirar dúvida ou acompanhar a comunidade. Também dá pra encontrar pelo Steam.</p>
+
+            <span class="social-arrow" aria-hidden="true">↗</span>
+        </a>
+
+
+        <!-- TWITCH -->
+        <a
+            href="https://www.twitch.tv/gojodark1hz"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-card social-twitch"
+        >
+            <span class="social-index">03</span>
+
+            <div class="social-info">
+                <span class="social-type">LIVES</span>
+                <h3>Twitch</h3>
+                <p>GojoDark1hz</p>
             </div>
-        </div>
-        <!-- Para adicionar uma pergunta nova, copie um .faq-item inteiro. O padrão é "Dúvida sobre [tema]?" como pergunta -->
+
+            <span class="social-arrow" aria-hidden="true">↗</span>
+        </a>
+
+
+        <!-- DISCORD -->
+        <a
+            href="https://discord.gg/vh5PhPACQT"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-card social-discord"
+        >
+            <span class="social-index">04</span>
+
+            <div class="social-info">
+                <span class="social-type">COMUNIDADE</span>
+                <h3>Discord</h3>
+                <p>Limitless Society</p>
+            </div>
+
+            <span class="social-arrow" aria-hidden="true">↗</span>
+        </a>
+
+
+        <!-- STEAM -->
+        <a
+            href="https://steamcommunity.com/id/GojoDark/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-card social-steam"
+        >
+            <span class="social-index">05</span>
+
+            <div class="social-info">
+                <span class="social-type">GAMES</span>
+                <h3>Steam</h3>
+                <p>GojoDark</p>
+            </div>
+
+            <span class="social-arrow" aria-hidden="true">↗</span>
+        </a>
+
+
+<!-- EASTER EGG -->
+<a
+    href="https://youtu.be/0ms3jv7ug1k?si=5XUD6LTl2xsTU6AM"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="social-card social-secret"
+    id="secret-link"
+    aria-label="Acesso restrito"
+>
+    <span class="social-index">??</span>
+
+    <div class="social-info">
+        <span class="social-type">RESTRITO</span>
+        <h3>Hack CS?</h3>
+        <p>Acesso restrito</p>
     </div>
+
+    <span class="social-arrow" aria-hidden="true">↗</span>
+</a>
+
+</div>
+
 </section>
 
-<footer>© 2026 GojoDark</footer>
+</main>
 
-<button id="to-top" class="to-top" aria-label="Voltar ao topo">↑</button>
+<footer class="site-footer">
+
+    <div class="footer-inner">
+
+        <div class="footer-brand">
+            <div class="logo">
+                Gojo<span>Dark</span>
+            </div>
+
+            <p>
+                Projetos, jogos e tecnologia.
+            </p>
+        </div>
+
+        <div class="footer-links">
+
+            <a
+                href="https://github.com/GojoDark"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                GitHub
+            </a>
+
+            <a
+                href="https://www.youtube.com/@GojoDark1hz"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                YouTube
+            </a>
+
+            <a
+                href="https://www.twitch.tv/gojodark1hz"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Twitch
+            </a>
+
+            <a
+                href="https://steamcommunity.com/id/GojoDark/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Steam
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <span>Feito por Victor.</span>
+        <span>© 2026 GojoDark</span>
+    </div>
+
+</footer>
+
+
+<button
+    id="to-top"
+    class="to-top"
+    type="button"
+    aria-label="Voltar ao topo"
+>
+    ↑
+</button>
+
 
 <script src="js/main.js"></script>
 
